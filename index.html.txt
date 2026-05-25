@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Beloved</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fff5f5;
+            color: #4a4a4a;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- CUTE CRAWLING/TWINKLING SHAPES --- */
+        .star {
+            position: absolute;
+            color: #ffb7b2;
+            font-size: 1.5rem;
+            animation: twinkle 2s infinite ease-in-out;
+            user-select: none;
+            pointer-events: none;
+        }
+        /* Placing decorative stars around the page */
+        .star1 { top: 15%; left: 10%; animation-delay: 0s; }
+        .star2 { top: 40%; right: 8%; animation-delay: 0.5s; }
+        .star3 { top: 70%; left: 5%; animation-delay: 1s; }
+        .star4 { top: 85%; right: 12%; animation-delay: 1.5s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.3) rotate(45deg); color: #ffb7b2; }
+        }
+
+        /* Swirling / Rotating Arrow */
+        .swirl-arrow {
+            display: inline-block;
+            font-size: 2rem;
+            color: #d63447;
+            margin-top: 15px;
+            animation: swirl 4s infinite linear;
+        }
+
+        @keyframes swirl {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- BASIC LAYOUT --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('hero-bg.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #d63447;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .subtitle-phrase {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* Photo Gallery (Grid updated for 5 images beautifully) */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(214, 52, 71, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .gallery-item p {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Message Cards */
+        .message-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(214, 52, 71, 0.05);
+            border-top: 4px solid #f57b85;
+            text-align: left;
+        }
+
+        .card h3 {
+            color: #d63447;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: #d63447;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TWINKLING BACKGROUND STARS -->
+    <div class="star star1">✦</div>
+    <div class="star star2">✨</div>
+    <div class="star star3">✦</div>
+    <div class="star star4">✨</div>
+
+    <!-- 1. HERO COVER -->
+    <div class="hero">
+        <!-- 💡 CHANGE THIS TO YOUR OWN CUTE PHRASE -->
+        <h1>To My Favorite Human</h1>
+        <p>You make my world a whole lot brighter ✨</p>
+    </div>
+
+    <!-- 2. WHY I LOVE YOU SECTION -->
+    <div class="section">
+        <h2>Little Things I Love About You</h2>
+        <!-- 💡 CUSTOM SUB-PHRASE -->
+        <p class="subtitle-phrase">"In case I don't say it enough, here is a small reminder..."</p>
+        
+        <div class="message-grid">
+            <div class="card">
+                <h3>Your Whole Vibe</h3>
+                <p>How you can seamlessly switch from being completely silly with me to listening to my longest rants. I love every version of you.</p>
+            </div>
+            <div class="card">
+                <h3>Your Heart</h3>
+                <p>The pure, genuine kindness you show to the people around you. You inspire me to be a gentler person every single day.</p>
+            </div>
+            <div class="card">
+                <h3>The Safe Space</h3>
+                <p>No matter how chaotic or exhausting life gets outside, just talking to you feels like coming home. You are my peace.</p>
+            </div>
+        </div>
+
+        <!-- ROTATING SWIRLY ARROW -->
+        <div class="swirl-arrow">➔</div>
+    </div>
+
+    <!-- 3. PHOTO GALLERY (5 IMAGES) -->
+    <div class="section">
+        <h2>Our Beautiful Journey</h2>
+        <p class="subtitle-phrase">Some of my absolute favorite chapters of us.</p>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="your-image-1.jpg" alt="Memory 1">
+                <p>Where our story happily began...</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-2.jpg" alt="Memory 2">
+                <p>The casual dates where we talked for hours.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-3.jpg" alt="Memory 3">
+                <p>My favorite picture of your precious smile.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-4.jpg" alt="Memory 4">
+                <p>A random, chaotic adventure together!</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-5.jpg" alt="Memory 5">
+                <p>Looking forward to making a million more memories with you.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Forever & Always Yours ❤️</p>
+    </footer>
+
+</body>
+</html>

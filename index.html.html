@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Cinta Hati 🤍</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #fffdf9;
+            color: #4a4a4a;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- FLOATING MUSIC PLAYER BUTTON --- */
+        .music-player-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #d63447;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(214, 52, 71, 0.4);
+            z-index: 100;
+            user-select: none;
+            animation: pulseHeart 2s infinite;
+            transition: transform 0.2s ease;
+        }
+
+        .playing {
+            animation: spinMusic 4s infinite linear !important;
+        }
+
+        @keyframes pulseHeart {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(214, 52, 71, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 4px 25px rgba(214, 52, 71, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(214, 52, 71, 0.4); }
+        }
+
+        @keyframes spinMusic {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- CINEMATIC VIDEO HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-shadow: 0 0 10px #fff, 0 0 20px #ff7b93, 0 0 30px #ff7b93, 0 0 40px #ff7b93;
+            animation: flashyGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes flashyGlow {
+            0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff7b93, 0 0 30px #ff7b93; transform: scale(1); }
+            100% { text-shadow: 0 0 15px #fff, 0 0 30px #ff345e, 0 0 45px #ff345e, 0 0 60px #ff345e; transform: scale(1.03); }
+        }
+
+        .hero p {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-top: 15px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* --- BASIC SECTION LAYOUT --- */
+        .section {
+            padding: 40px 20px;
+            max-width: 950px;
+            margin: 40px auto;
+            text-align: center;
+            position: relative;
+            background: rgba(255, 253, 249, 0.88);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(5px);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #d63447;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .subtitle-phrase {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* --- INTERACTIVE CLICK-TO-REVEAL TEXT (ACCORDION) --- */
+        .message-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(214, 52, 71, 0.05);
+            border-top: 4px solid #f57b85;
+            text-align: left;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card.center-card {
+            grid-column: 1 / -1;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .card-button {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #d63447;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+        }
+
+        .card-button:hover { background-color: #fff5f5; }
+        .card-button::after { content: '👇'; font-size: 1rem; transition: transform 0.3s; }
+        .card.active .card-button::after { content: '❤️'; }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 20px;
+        }
+
+        .card.active .card-content { padding: 0 20px 20px 20px; max-height: 600px; }
+        .card-content p { font-size: 0.98rem; color: #555; line-height: 1.7; }
+
+        /* --- RESET & UPDATED FLOATING BOX AREA --- */
+        .pixel-container {
+            width: 100%;
+            height: 460px; 
+            position: relative;
+            margin: 10px 0;
+            overflow: hidden;
+            background: rgba(255, 245, 245, 0.75);
+            border-radius: 16px;
+            border: 2px dashed #f57b85;
+        }
+
+        .pixel-roamer {
+            position: absolute;
+            width: 135px;
+            height: 135px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: roamAround 12s infinite ease-in-out alternate;
+            z-index: 20; 
+        }
+
+        @keyframes roamAround {
+            0% { top: 15%; left: 15%; }
+            25% { top: 60%; left: 68%; }
+            50% { top: 35%; left: 40%; }
+            75% { top: 65%; left: 12%; }
+            100% { top: 15%; left: 72%; }
+        }
+
+        .inner-item {
+            position: absolute;
+            object-fit: contain;
+            image-rendering: pixelated;
+            animation: floatGently 4s infinite ease-in-out alternate;
+        }
+
+        .spin-slow {
+            animation: floatGently 4s infinite ease-in-out alternate, spinSlow 12s infinite linear;
+        }
+
+        @keyframes floatGently {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Updated Sizes (S, M, L, XL, XXL) */
+        .sz-s { width: 30px; height: 30px; }
+        .sz-m { width: 45px; height: 45px; }
+        .sz-l { width: 65px; height: 65px; }
+        .sz-xl { width: 85px; height: 85px; }
+        .sz-xxl { width: 110px; height: 110px; } /* Bigger copy size */
+
+        /* Precise Placements for Reset Elements */
+        .pos-1 { top: 8%; left: 8%; animation-delay: 0s; }
+        .pos-2 { top: 12%; right: 12%; animation-delay: 0.4s; }
+        .pos-3 { bottom: 10%; left: 10%; animation-delay: 0.8s; }
+        .pos-4 { bottom: 15%; right: 8%; animation-delay: 1.2s; }
+        .pos-5 { top: 40%; left: 5%; animation-delay: 1.6s; }
+        .pos-6 { bottom: 42%; right: 6%; animation-delay: 2s; }
+        .pos-7 { top: 22%; left: 32%; animation-delay: 2.4s; }
+        .pos-8 { bottom: 25%; right: 35%; animation-delay: 0.2s; }
+        .pos-9 { top: 5%; left: 50%; animation-delay: 0.6s; }
+        .pos-10 { bottom: 6%; left: 48%; animation-delay: 1s; }
+        .pos-11 { top: 48%; left: 24%; animation-delay: 1.4s; }
+        .pos-12 { top: 28%; right: 26%; animation-delay: 1.8s; }
+
+        /* --- PHOTO GALLERY --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover { transform: translateY(-5px); }
+        .gallery-item img { width: 100%; height: 280px; object-fit: cover; border-radius: 8px; }
+        .gallery-item p { margin-top: 12px; font-size: 0.95rem; color: #555; font-style: italic; }
+
+        footer {
+            background-color: #d63447;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .message-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="mySong" src="our-song.mp3" loop></audio>
+
+    <div class="music-player-btn" id="playBtn" onclick="toggleMusic()">❤️</div>
+
+    <div class="hero">
+        <video autoplay loop muted playsinline>
+            <source src="hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>To My Cinta Hati 🤍</h1>
+            <p>You make my world a whole lot brighter ✨</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Little Things I Love About You</h2>
+        <p class="subtitle-phrase">"In case I don't say it enough, tekan kotak di bawah..."</p>
+        
+        <div class="message-grid">
+            <div class="card" onclick="toggleCard(this)">
+                <button class="card-button">Your Silly Conversations & Our Fate</button>
+                <div class="card-content">
+                    <p>How can someone be as perfect as you? Being with you makes me forget all my burdens. You are my better half and will always be my favorite person to go to. Your silly conversations cheer me up every single day. Every small detail and every piece of "tea" you share makes me wonder why I didn't meet you earlier in life... Oh, wait! I totally forgot... WE ACTUALLY DID! WHO KNEW?! HAHAHAHA. Since you and I were both born in Hospital Kota Bharu, right? Please always be the bright person you are, and always stay true to yourself, my love. I hope we can stay together until the very end. I love every version of you... You are my Sunflower!!!</p>
+                </div>
+            </div>
+            
+            <div class="card" onclick="toggleCard(this)">
+                <button class="card-button">Your Beautiful Heart</button>
+                <div class="card-content">
+                    <p>Ever since I met you, I could already guess what type of person you are. Tough on the outside, but deep down, you're just a girl trying her absolute best in life. Take it easy, girl... you are still young, and so am I. We both have plenty of time to learn, to try new things, and most importantly, to enjoy this world together as human beings. Even when you need help yourself, you always try your best to put others first. YOU ARE SUCH A "SETERONGGGG WOMANNN"! I love you so much for that. Your kindness, compassion, and empathy are what make you exactly who you are... Alya Nabila!!! You are my inspiration to become a better version of myself, so I can stand proudly side by side with you. So don't be so hard on yourself, and try learning to lean on me a bit... Okay? Remember that I am forever going to be by your side, no matter what.</p>
+                </div>
+            </div>
+
+            <div class="card center-card" onclick="toggleCard(this)">
+                <button class="card-button">My Safe Space</button>
+                <div class="card-content">
+                    <p>My love, no matter how exhausted, anxious, sad, or even mad I feel... just talking to you always makes me feel right at home. I don't know if you "santau-ed" me or gave me some kind of love potion to make me fall this hard... but what I do know is that I will forever be grateful to have you as my partner, my best friend, and my companion. I hope you aren't tired of hearing me vent about my tasks yet... AHAHHAHA. Thank you, my love.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" style="padding: 15px 25px; background: rgba(255, 253, 249, 0.55);">
+        <div class="pixel-container">
+            <img src="alya-photo.jpg" alt="Alya Nabila" class="pixel-roamer">
+            
+            <img src="cat1.png" alt="" class="inner-item pos-1 sz-m">
+            <img src="cat1.png" alt="" class="inner-item pos-2 sz-xl">
+            <img src="cat1.png" alt="" class="inner-item pos-3 sz-xxl"> <img src="cat2.png" alt="" class="inner-item pos-4 sz-s">
+            <img src="cat2.png" alt="" class="inner-item pos-5 sz-l">
+            <img src="cat2.png" alt="" class="inner-item pos-6 sz-xxl"> <img src="cat3.png" alt="" class="inner-item pos-7 sz-m">
+            <img src="cat3.png" alt="" class="inner-item pos-8 sz-xl">
+            
+            <img src="flower1.png" alt="" class="inner-item pos-9 sz-s spin-slow">
+            <img src="flower1.png" alt="" class="inner-item pos-10 sz-l spin-slow">
+            <img src="flower1.png" alt="" class="inner-item pos-11 sz-xxl spin-slow"> <img src="flower2.png" alt="" class="inner-item pos-12 sz-m">
+            <img src="flower2.png" alt="" class="inner-item pos-1 sz-xl">
+            
+            <img src="flower3.png" alt="" class="inner-item pos-2 sz-s spin-slow">
+            <img src="flower3.png" alt="" class="inner-item pos-3 sz-l spin-slow">
+            <img src="flower3.png" alt="" class="inner-item pos-4 sz-xxl spin-slow"> </div>
+    </div>
+
+    <div class="section">
+        <h2>Our Beautiful Journey</h2>
+        <p class="subtitle-phrase">Some of my absolute favorite chapters of us.</p>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="your-image-1.jpg" alt="Memory 1">
+                <p>Where our story happily began...</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-2.jpg" alt="Memory 2">
+                <p>The casual dates where we talked for hours.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-3.jpg" alt="Memory 3">
+                <p>My favorite picture of your precious smile.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-4.jpg" alt="Memory 4">
+                <p>A random, chaotic adventure together!</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-5.jpg" alt="Memory 5">
+                <p>Looking forward to making a million more memories with you.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="your-image-6.jpg" alt="Memory 6">
+                <p>My favourite picture of us.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Forever & Always Yours ❤️</p>
+    </footer>
+
+    <script>
+        function toggleCard(cardElement) {
+            cardElement.classList.toggle("active");
+        }
+
+        const song = document.getElementById("mySong");
+        const btn = document.getElementById("playBtn");
+
+        function toggleMusic() {
+            if (song.paused) {
+                song.play().catch(error => {
+                    console.log("Muzik memerlukan fail our-song.mp3.");
+                });
+                btn.classList.add("playing");
+                btn.innerHTML = "🎵";
+            } else {
+                song.pause();
+                btn.classList.remove("playing");
+                btn.innerHTML = "❤️";
+            }
+        }
+    </script>
+
+</body>
+</html>
